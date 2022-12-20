@@ -1,0 +1,29 @@
+.post-container{
+
+}
+
+.sub-post-container{
+    width: 94%;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: 16px;
+    border-radius: 10px;
+}
+
+.post-img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.post-images{
+    width: 450px;
+    height: 450px;
+    object-fit: contain;
+}
+
+.icon-post{
+    width: 20px;
+    margin-left: 10px;
+}

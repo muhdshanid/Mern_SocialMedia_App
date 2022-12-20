@@ -1,0 +1,45 @@
+.rightbar{
+    flex: 1;
+    margin-right: -80px;
+}
+
+
+.right-container{
+    width: 20pc;
+    height: 37vh;
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+.right-container-two{
+    width: 20pc;
+    height: 80vh;
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+
+.adsimg{
+    width: 130px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.ads-container{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 0px;
+    padding: 10px;
+}
+
+.profile-image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.add-friend{
+    width: 20px;
+    height: 20px;
+}

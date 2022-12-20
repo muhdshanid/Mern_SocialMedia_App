@@ -1,0 +1,45 @@
+
+.leftbar{
+    flex: 1;
+    margin-left: -50px;
+}
+
+.notifications-container{
+    width: 18pc;
+    height: 60vh;
+    background-color: white;
+    margin-top: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-radius: 20px;
+}
+
+.noti-img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.like-image{
+    width: 40px;
+    height: 40px;
+    margin-left: 43px;
+    border-radius: 3px;
+}
+
+.followinguser-image{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-left: 45px;
+}
+
+.explore-image{
+    width: 86px;
+    margin-left: 4px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 7px;
+    margin-top: 6px;
+}
