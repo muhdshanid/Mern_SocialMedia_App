@@ -1,0 +1,50 @@
+
+.profile-leftbar{
+    flex: 1;
+    margin-left: -50px;
+}
+
+.notifications-container{
+    width: 18pc;
+    height: 60vh;
+    background-color: white;
+    margin-top: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-radius: 20px;
+}
+
+.profile-image{
+    width: 60px;
+    border-radius: 50%;
+    height: 60px;
+    object-fit: cover;
+}
+/* .like-image{
+    width: 40px;
+    height: 40px;
+    margin-left: 43px;
+    border-radius: 3px;
+} */
+
+.profile-page-cover{
+    width: 270px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.explore-image{
+    width: 86px;
+    margin-left: 4px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 7px;
+    margin-top: 6px;
+}
+
+.friend-image{
+    width: 80px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+}

@@ -1,0 +1,11 @@
+.profile-mainpost-container{
+    flex: 3;
+}
+
+.profile-cover-image{
+    width:92% ;
+    border-radius: 10px;
+    object-fit: cover;
+    height: 25vh;
+    margin-top: 20px;
+}

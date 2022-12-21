@@ -12,13 +12,13 @@ const ContentPost = () => {
           <img src={`${profile}`} className='profile-image' alt="" />
           <input placeholder='Write your real thought' type="text" className='content-input'/>
         </div>
-        <div style={{display:"flex",marginLeft:"10px"}}>
+        <div style={{display:"flex",marginLeft:"10px",alignItems:'center',marginTop:25}}>
           <img className='icons' src={`${imageIcon}`} alt="" />
           <img className='icons' src={`${emojiIcon}`} alt="" />
           <img className='icons' src={`${videoIcon}`} alt="" />
-          <div className=''>
-          <button className='post-btn'>Post</button>
           </div>
+          <div style={{marginTop:-43,display:"flex",justifyContent:'end'}}>
+          <button className='post-btn'>Post</button>
         </div>
       </div>
     </div>
