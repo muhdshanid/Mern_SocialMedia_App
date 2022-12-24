@@ -1,7 +1,7 @@
 .icons{
     width: 20px;
     height: 20px;
-    margin-top: 0px;
+    margin-top: 10px;
     margin-right: 0px;
 }
 
@@ -51,6 +51,7 @@
 }
 
 .search-input {
+    outline: none;
     width: 33pc;
     border: none;
     padding: 4px;

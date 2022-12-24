@@ -11,8 +11,6 @@ import { useEffect } from "react";
 import image4 from '../Images/image4.jpg'
 import axios from "axios";
 const ProfilePost = ({post}) => {
-  const [like, setLike] = useState( likeIcon);
-  const [count, setCount] = useState(0);
   const [user, setUser] = useState([])
   const [comments, setComments] = useState([]);
   const [commentWriting, setCommentWriting] = useState("");
@@ -27,7 +25,7 @@ const ProfilePost = ({post}) => {
       }
     }
     getUser()
-  },[])
+  },[post.user])
   const handleLike = async() => {
     // if (like == likeIcon) {
     //   await fetch(`http://localhost:5000/api/post/like/${post._id}`,{

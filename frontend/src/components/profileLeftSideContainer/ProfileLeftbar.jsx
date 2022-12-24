@@ -15,19 +15,19 @@ const ProfileLeftbar = () => {
   const userDetails = useSelector(state => state.user)
   let user = userDetails.user
   const paramId = user.other._id
-  console.log(user.other.following);
   const [follow, setFollow] = useState([user.other.following.includes(id) ? "Unfollow" : "Follow"])
-  useEffect(()=>{
-    const getUser = async () => {
-      try {
-        const {data} = await axios.get(`http://localhost:5000/api/user/posted-user/${id}`)
-        setLoggedUser(data)
-      } catch (error) {
-        console.log(error.message);
-      }
+  const getUser = async () => {
+    try {
+      const {data} = await axios.get(`http://localhost:5000/api/user/posted-user/${id}`)
+      setLoggedUser(data)
+    } catch (error) {
+      console.log(error.message);
     }
+  }
+  useEffect(()=>{
+    
     getUser()
-  },[])
+  },[id]) 
   let followers = loggedUser?.followers?.length
   let following = loggedUser?.following?.length
   useEffect(()=>{
@@ -40,7 +40,7 @@ const ProfileLeftbar = () => {
       }
     }
     fetchFollowingUsers()
-  },[])
+  },[id])
   const accessToken = user.token
   const handleFollow = async id => {
     if(follow == "Follow"){
@@ -52,6 +52,7 @@ const ProfileLeftbar = () => {
           },
           body:JSON.stringify({user:user.other._id})
       })
+      getUser()
       setFollow("Unfollow")
     }else{
       await fetch(`http://localhost:5000/api/user/following/${id}`,{
@@ -62,6 +63,7 @@ const ProfileLeftbar = () => {
         },
         body:JSON.stringify({user:user.other._id})
     })
+    getUser()
     setFollow("Follow")
     }
 }

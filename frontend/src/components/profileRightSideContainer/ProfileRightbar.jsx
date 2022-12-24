@@ -34,7 +34,7 @@ const ProfileRightbar = () => {
       }
     }
     fetchFollowingUsers()
-  },[])
+  },[id])
   return (
     <div className="profile-righbar">
       <div className="profile-right-container">

@@ -27,6 +27,10 @@ const ContentPost = () => {
   const notifyError = msg => toast.error(msg)
   const handlePost = (e) => {
     e.preventDefault();
+    if(!title){
+      notifyError("Add Title and select image or video")
+      return
+    }
     if (file !== null) {
       setTitle("")
       const fileName = new Date().getTime() + file.name;

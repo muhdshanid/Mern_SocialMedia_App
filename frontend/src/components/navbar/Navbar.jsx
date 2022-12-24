@@ -27,7 +27,9 @@ const Navbar = () => {
         </div>
         <div className='icons-container'>
             <img src={`${notification}`} className='icons' alt="" />
+            <Link to={"/chat"}>
             <img src={`${message}`} className='icons' alt="" />
+            </Link>
            <Link to={`/profile/${id}`} style={{textDecoration:"none",color:"black"}}>
            <div style={{display:"flex",alignItems:"center"}}>
                 <img src={`${user.other.profile}`} className='profile-image' alt="" />

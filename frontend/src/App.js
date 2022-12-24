@@ -9,6 +9,7 @@ import {Toaster} from 'react-hot-toast'
 import ForgotPassword from './pages/forgotpassword/ForgotPassword';
 import VerifyEmail from './pages/verifyemail/VerifyEmail';
 import ResetPassword from './pages/resetpassword/ResetPassword';
+import Chat from './pages/chat/Chat';
 function App() {
   const userDetails = useSelector(state => state.user)
   let user = userDetails?.user
@@ -20,6 +21,7 @@ function App() {
         <Route path='/' element={user?.other?.verified === true ? <Home/> : <Navigate to={"/login"} replace={true}/>}/>
         <Route path='/login' element={ user?.other?.verified === true ?  <Navigate to={"/"} replace={true}/> : <Login/> }/>
         <Route path='/register' element={ <Register/>}/>
+        <Route path='/chat' element={ <Chat/>}/>
         <Route path='/profile/:id' element={<Profile/>}/>
         <Route path='/forgot-password' element={<ForgotPassword/>}/>
         <Route path='/reset-password' element={<ResetPassword/>}/>

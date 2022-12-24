@@ -24,7 +24,7 @@ const ProfileMainPost = () => {
       } 
     }
     fetchUserPosts()
-  },[])
+  },[id])
   return (
     <div className='profile-mainpost-container'>
       <div>
