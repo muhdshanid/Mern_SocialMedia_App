@@ -27,6 +27,11 @@ const userSchema = new mongoose.Schema({
   profile: {
     type: String,
   },
+  verified:{
+    type:Boolean,
+    required:true,
+    default:false
+  }
 });
 
 const UserModel = mongoose.model("User", userSchema);

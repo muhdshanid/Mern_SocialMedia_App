@@ -5,24 +5,18 @@ import commentIcon from "../Images/speech-bubble.png";
 import shareIcon from "../Images/share.png";
 import moreOption from "../Images/more.png";
 import LikedIcon from "../Images/setLike.png";
-import "./Post.css";
+import "./ProfilePost.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from 'axios'
-import { useSelector } from "react-redux";
-const Post = ({post}) => {
-  const userDetail = useSelector(state => state.user)
-  let userr = userDetail.user
-  const userId = userr.other._id
-  const userDetails = useSelector(state => state.user)
-  const [like, setLike] = useState([post.like.includes(userId) ? LikedIcon : likeIcon]);
-  const [count, setCount] = useState(post.like.length);
+import image4 from '../Images/image4.jpg'
+import axios from "axios";
+const ProfilePost = ({post}) => {
+  const [like, setLike] = useState( likeIcon);
+  const [count, setCount] = useState(0);
   const [user, setUser] = useState([])
-  const [comments, setComments] = useState(post.comments);
+  const [comments, setComments] = useState([]);
   const [commentWriting, setCommentWriting] = useState("");
   const [showComments, setShowComments] = useState(false);
-  let loggedInUser = userDetails.user
-  const accessToken = loggedInUser.token
   useEffect(()=>{
     const getUser = async () => {
       try {
@@ -35,55 +29,41 @@ const Post = ({post}) => {
     getUser()
   },[])
   const handleLike = async() => {
-    if (like == likeIcon) {
-      await fetch(`http://localhost:5000/api/post/like/${post._id}`,{
-        method:'PUT',
-        headers:{
-          "Content-Type":"application/json",
-          token:accessToken
-        },
-        body:JSON.stringify({
-          user:userId
-        })
-      })
-      setLike(LikedIcon);
-      setCount(count + 1);
-    } else {
-      await fetch(`http://localhost:5000/api/post/like/${post._id}`,{
-        method:'PUT',
-        headers:{
-          "Content-Type":"application/json",
-          token:accessToken
-        },
-        body:JSON.stringify({
-          user:userId
-        })
-      })
-      setLike(likeIcon);
-      setCount(count - 1);
-    }
+    // if (like == likeIcon) {
+    //   await fetch(`http://localhost:5000/api/post/like/${post._id}`,{
+    //     method:'PUT',
+    //     headers:{
+    //       "Content-Type":"application/json",
+    //       token:accessToken
+    //     },
+    //     body:JSON.stringify({ 
+    //       user:"63a2f35728fa6ef6929371ac"
+    //     })
+    //   })
+    //   setLike(LikedIcon);
+    //   setCount(count + 1);
+    // } else {
+    //   await fetch(`http://localhost:5000/api/post/like/${post._id}`,{
+    //     method:'PUT',
+    //     headers:{
+    //       "Content-Type":"application/json",
+    //       token:accessToken
+    //     },
+    //     body:JSON.stringify({
+    //       user:"63a2f35728fa6ef6929371ac"
+    //     })
+    //   })
+    //   setLike(likeIcon);
+    //   setCount(count - 1);
+    // }
   };
-  const addComments = async() => {
+  const addComments = () => {
     const comment = {
-      postId: `${post._id}`,
-      comment: `${commentWriting}`,
-      profile:`${userr?.other?.profile}`,
-      username:`${userr?.other?.username}`
+      id: "57349573",
+      username: "shanid",
+      title: `${commentWriting}`,
     };
     setComments(comments.concat(comment));
-    await fetch(`http://localhost:5000/api/post/comment-post`,{
-        method:'PUT',
-        headers:{
-          "Content-Type":"application/json",
-          token:accessToken
-        },
-        body:JSON.stringify({
-          postId: `${post._id}`,
-      comment: `${commentWriting}`,
-      profile:`${userr?.other?.profile}`
-        })
-      })
-      setCommentWriting("")
   };
   const handleComment = () => {
     addComments();
@@ -100,12 +80,8 @@ const Post = ({post}) => {
       <div className="sub-post-container">
         <div>
           <div style={{ display: "flex", alignItems: "center" }}>
-            {
-              !user.profile  ?  <img src={`${profile}`} className="post-img" alt="" /> : 
               <img src={`${user.profile}`} className="post-img" alt="" />
-            }
-           
-            <p style={{ marginLeft: "5px" }}>{user.username}</p>
+            <p style={{ marginLeft: "5px" }}>{user?.username}</p>
             <img src={`${moreOption}`} className="more-icon" alt="" />
           </div>
           <p
@@ -118,14 +94,7 @@ const Post = ({post}) => {
           >
             {post.title}
           </p>
-          {
-            post.image !== ""  ?
-            <img src={`${post.image}`} className="post-images" alt="" />
-            :
-            post.video !== "" ? <video width="500" className="post-videos"  height="500" controls>
-              <source src={`${post.video}`} type="video/mp4" />
-            </video>  : ""
-          }
+          <img src={`${post.image}`} className="post-images" alt="" />
           <div style={{ display: "flex" }}>
             <div style={{ display: "flex", marginLeft: "10px" }}>
               <div
@@ -135,13 +104,13 @@ const Post = ({post}) => {
                   alignItems: "center",
                 }}
               >
-                <img
+                {/* <img
                   src={`${like}`}
                   className="icon-post"
                   onClick={handleLike}
                   alt=""
-                />
-                <p style={{ marginLeft: "6px" }}>{count} Likes</p>
+                /> */}
+                <p style={{ marginLeft: "6px" }}>{post.like.length} Likes</p>
               </div>
               <div
                 style={{
@@ -157,7 +126,7 @@ const Post = ({post}) => {
                   className="icon-post"
                   alt=""
                 />
-                <p style={{ marginLeft: "6px" }}>{comments.length} Comments</p>
+                <p style={{ marginLeft: "6px" }}>{post.comments.length} Comments</p>
               </div>
             </div>
             <div
@@ -165,23 +134,22 @@ const Post = ({post}) => {
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
-                marginLeft: 130,
+                marginLeft: 200,
               }}
             >
-              <img src={`${shareIcon}`} className="icon-post" alt="" />
-              <p style={{ marginLeft: "19px" }}>Share</p>
+              <img src={`${shareIcon}`} style={{marginLeft:20,width:20}} alt="" />
+              <p style={{ marginLeft: "10px" }}>Share</p>
             </div>
           </div>
           {showComments ? (
             <div style={{ padding: "10px" }}>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <img src={`${userr?.other?.profile}`} className="comment-post-img" alt="" />
+                <img src={`${profile}`} className="comment-post-img" alt="" />
                 {/* <p style={{marginLeft:"7px"}}>Shanid</p> */}
                 <input
                   className="comment"
                   placeholder="Write your thought"
                   onChange={(e) => setCommentWriting(e.target.value)}
-                  value={commentWriting}
                   type="text"
                   name=""
                   id=""
@@ -194,13 +162,13 @@ const Post = ({post}) => {
                 <div style={{  alignItems: "center" }}>
                   <div style={{display:"flex",alignItems:"center"}}>
                     <img
-                      src={`${cmt?.profile}`}
+                      src={`${profile}`}
                       className="comment-post-img"
                       alt=""
                     />
-                    <p style={{ marginLeft: "7px",fontSize:18,marginTop:6 }}>{cmt?.username}</p>
+                    <p style={{ marginLeft: "7px",fontSize:18,marginTop:6 }}>{cmt.username}</p>
                   </div>
-                  <p style={{marginTop:"-16px", marginLeft: "62px" ,textAlign:"start"}}>{cmt.comment}</p>
+                  <p style={{marginTop:"-16px", marginLeft: "62px" ,textAlign:"start"}}>{cmt.title}</p>
                   <p style={{marginTop:"-13px", marginLeft: "62px" ,textAlign:"start",color:"#aaa",fontSize:11}}>Reply</p>
                 </div>
               ))}
@@ -214,4 +182,4 @@ const Post = ({post}) => {
   );
 };
 
-export default Post;
+export default ProfilePost;

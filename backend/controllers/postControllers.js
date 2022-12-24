@@ -19,7 +19,7 @@ export const createPost = async (req, res) => {
 
 export const getPost = async (req, res) => {
   try {
-    const { id } = req.user;
+    const { id } = req.params;
     const myPosts = await PostModel.find({ user: id });
     if (!myPosts) {
       return res.status(200).json("You dont have any post");
@@ -53,7 +53,7 @@ export const likePost = async (req, res) => {
   try {
     const { id } = req.params;
     const { user } = req.body;
-    const post = await PostModel.findById(id);
+    const post = await PostModel.findById(id);  
     if (!post.like.includes(user)) {
         if (post.dislike.includes(user)) {
             await post.updateOne({ $pull: { dislike: user } });
@@ -93,11 +93,12 @@ export const dislikePost = async (req, res) => {
 
 export const commentPost = async (req, res) => {
   try {
-    const { comment, postId } = req.body;
+    const { comment, postId ,profile} = req.body;
     const comments = {
       user: req.user.id,
       username: req.user.username,
       comment,
+      profile
     };
     const post = await PostModel.findById(postId);
     post.comments.push(comments);

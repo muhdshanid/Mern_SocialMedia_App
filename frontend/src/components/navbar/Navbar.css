@@ -40,6 +40,8 @@
 }
 .logo-container{
     flex:0.2;
+    width: 100px;
+    margin-left: 50px;
 }
 
 .search-icon{

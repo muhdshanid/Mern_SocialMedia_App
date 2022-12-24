@@ -13,7 +13,7 @@ import {
 const postRouter = express.Router();
 
 postRouter.post("/create-post", verifyToken, createPost);
-postRouter.get("/get-post", verifyToken, getPost);
+postRouter.get("/get-post/:id", getPost);
 postRouter.put("/update-post/:id", verifyToken, updatePost);
 postRouter.put("/like/:id", verifyToken, likePost);
 postRouter.put("/dislike/:id", verifyToken, dislikePost);

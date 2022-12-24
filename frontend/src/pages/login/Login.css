@@ -1,0 +1,58 @@
+.main-container-register{
+    background-color: #f0f2f5;
+    height: 100vh;
+}
+
+.sub-container{
+    display: flex;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.create-account-text{
+    font-size: 20px;
+    margin-top: 80px;
+    text-align: start;
+    margin-left: 40%;
+}
+
+.logo-text{
+    font-size: 40px;
+    text-align: start;
+    margin-top: 0px;
+}
+
+.part{
+    color: rgb(167, 127, 127);
+}
+
+.intro-text{
+font-size: 20px;
+text-align: start;
+margin-top: -40px;
+}
+
+.input-text{
+    margin-left: 30%;
+    width: 40%;
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
+.signup-btn{
+    width: 200px;
+    margin-left: 30%;
+    margin-top: 15px;
+    border-radius: 10px;
+    padding-left: 150px;
+    padding-right: 209px;
+    padding-top: 8px;
+    text-align: justify;
+    padding-bottom: 8px;
+    cursor: pointer;
+    background-color: white;
+    border: none;
+}
