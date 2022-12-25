@@ -242,15 +242,15 @@ export const getPosts = async (req,res) => {
         const user = await UserModel.findById(id)
         const followersPost = await Promise.all(
             user.following.map(item => {
-                return PostModel.find({user:item}).sort({title:-1})
+                return PostModel.find({user:item}).sort({updatedAt:-1})
             })
         )
-        const userPosts = await PostModel.find({user:user._id}).sort({title:-1})
+        const userPosts = await PostModel.find({user:user._id}).sort({updatedAt:-1})
         return res.status(200).json(userPosts.concat(...followersPost))
     } catch (error) {
         console.log(error.message);
         return res.status(500).json({message:"Internal server error"})
-    }
+    } 
 }
 
 export const updateUser = async (req,res) => {
@@ -361,9 +361,11 @@ export const getFollowers = async (req,res) => {
             })
         )
         let followersList = []
-        followers.map(person => {
-            const {email,phonenumber,followers,following,password,...other} = person._doc
-            followersList.push(other)
+         followers.map(person => {
+            if(person){
+                const {email,phonenumber,followers,following,password,...other} = person._doc
+                followersList.push(other)
+            }
         })
         return res.status(200).json(followersList)
     } catch (error) {

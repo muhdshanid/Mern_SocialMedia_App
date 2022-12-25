@@ -171,16 +171,16 @@ const ProfileLeftbar = () => {
           <p style={{marginLeft:"10px"}}>Friends</p>
           <p style={{marginRight:"10px",color:"#aaa"}}>See all</p>
         </div>
-        <div style={{display:"flex",flexWrap:'wrap',marginLeft:5}}>
+        <div style={{display:"flex",flexWrap:'wrap',marginLeft:2}}>
           {
             followingUser.map(user => (
               <Link to={`/profile/${user._id}`} style={{textDecoration:"none",color:"black"}}>
-              <div key={user._id} style={{marginLeft:4,cursor:"pointer"}}>
+              <div key={user._id} style={{marginLeft:2,cursor:"pointer"}}>
             <img src={`${user.profile}`} alt="" className="friend-image" />
             <p style={{marginTop:-2}}>{user.username}</p>
           </div>
               </Link>
-            ))
+            )) 
           }
         </div>
       </div>

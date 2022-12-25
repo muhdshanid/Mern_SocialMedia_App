@@ -7,6 +7,7 @@
 
 .part{
     color: rgb(167, 127, 127);
+    width: 110px;
 }
 
 .profile-image{
@@ -85,17 +86,19 @@
     border-radius: 50%;
 }
 
-.user-container{
-    width: 470px;
+.user-containerr{
+    width: 97%;
     border-radius: 10px;
     background-color: aliceblue;
     margin-bottom: 2px;
     display: flex;
-    margin-right: 5px;
+    margin-right: 55px;
+    margin-left: 10px;
     margin-top: 2px;
 } 
 
 .users-container{
+    width: 500px;
     margin-left: -15px;
     margin-top: 15px;
     overflow: hidden;

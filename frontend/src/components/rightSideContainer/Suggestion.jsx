@@ -19,7 +19,7 @@ const Suggestion = ({userDetails}) => {
             body:JSON.stringify({user:userId})
         })
         setFollow(userToFollow)
-        window.location.reload()
+        // window.location.reload()
     }
   return (
     <div style={{marginTop:"-10px"}} id={userDetails._id}>

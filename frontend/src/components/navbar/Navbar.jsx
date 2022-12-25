@@ -49,19 +49,19 @@ const Navbar = () => {
             <div className='search-result' style={{display:"flex",flexDirection:'column',position:"absolute",alignItems:"center",justifyContent:'center'}}>
             <span onClick={()=>([
                 setOpen(false),
-                setSearch("")])} style={{color:"white",height:"5px",marginLeft:"490px"}}><IoCloseCircleOutline size={20}/></span>
+                setSearch("")])} style={{color:"white",height:"5px",marginLeft:"468px"}}><IoCloseCircleOutline size={20}/></span>
             <div className='users-container'>
                 {
                     users?.map(user=>(
                          user.username.includes(search) && user._id !== id ?
             <Link style={{textDecoration:"none"}} to={`/profile/${user._id}`}>
-            <div  className='user-container' >
+            <div className='user-containerr' >
                 <img className='search-image' src={`${user.profile}`} alt="" />
                 <p style={{color:"black"}}>{user.username}</p>
             </div></Link> : ""
                     )) 
                 }
-            </div>
+                </div>
         </div> : ""
            }
         </div>
