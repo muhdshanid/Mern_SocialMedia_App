@@ -10,6 +10,7 @@ const Contact = () => {
   let id = user.other._id;
   const accessToken = user.token;
   const [users, setUsers] = useState();
+  const [search, setSearch] = useState(null)
   const [currentChatUser, setCurrentChatUser] = useState(null)
   useEffect(() => {
     const getUser = async () => {
@@ -40,8 +41,47 @@ const Contact = () => {
             className="search-bar"
             type="search"
             placeholder="Search your friends"
+            onChange={e=>setSearch(e.target.value)}
           />
         </div>
+        {
+          search !== null ? <div className="user-details-container">
+
+          {  users?.map((user) => (
+            user.username.includes(search) &&
+            <div  key={user?._id} >
+              {user?._id !== id ? (
+                <div onClick={()=>handleClick(user)}className="user-container">
+                  <img src={`${user?.profile}`} className="chat-image" alt="dp" />
+                  <div style={{ marginLeft: "10px" }}>
+                    <p
+                      style={{
+                        color: "black",
+                        textAlign: "start",
+                        marginTop: "5px",
+                        fontSize: "15px",
+                      }}
+                    >
+                      {user?.username}
+                    </p>
+                    <p
+                      style={{
+                        color: "black",
+                        textAlign: "start",
+                        marginTop: "-16px",
+                        fontSize: "14px",
+                      }}
+                    >
+                      Open your message
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          ))}
+        </div> :
         <div className="user-details-container">
           {users?.map((user) => (
             <div  key={user?._id} >
@@ -77,6 +117,8 @@ const Contact = () => {
             </div>
           ))}
         </div>
+        }
+        
       </div>
       {
         currentChatUser !== null ? <ChatContainer currentChatUser={currentChatUser}/>

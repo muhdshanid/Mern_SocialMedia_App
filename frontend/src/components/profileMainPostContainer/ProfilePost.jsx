@@ -8,10 +8,16 @@ import LikedIcon from "../Images/setLike.png";
 import "./ProfilePost.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import image4 from '../Images/image4.jpg'
 import axios from "axios";
+import { useSelector } from "react-redux";
 const ProfilePost = ({post}) => {
+  const userDetails = useSelector(state => state.user)
+    let userr = userDetails.user
+    let id = userr.other._id
+    const accessToken = userr.token;
   const [user, setUser] = useState([])
+  const [like, setLike] = useState([post.like.includes(id) ? LikedIcon : likeIcon])
+  const [count, setCount] = useState(post.like.length)
   const [comments, setComments] = useState([]);
   const [commentWriting, setCommentWriting] = useState("");
   const [showComments, setShowComments] = useState(false);
@@ -27,36 +33,36 @@ const ProfilePost = ({post}) => {
     getUser()
   },[post.user])
   const handleLike = async() => {
-    // if (like == likeIcon) {
-    //   await fetch(`http://localhost:5000/api/post/like/${post._id}`,{
-    //     method:'PUT',
-    //     headers:{
-    //       "Content-Type":"application/json",
-    //       token:accessToken
-    //     },
-    //     body:JSON.stringify({ 
-    //       user:"63a2f35728fa6ef6929371ac"
-    //     })
-    //   })
-    //   setLike(LikedIcon);
-    //   setCount(count + 1);
-    // } else {
-    //   await fetch(`http://localhost:5000/api/post/like/${post._id}`,{
-    //     method:'PUT',
-    //     headers:{
-    //       "Content-Type":"application/json",
-    //       token:accessToken
-    //     },
-    //     body:JSON.stringify({
-    //       user:"63a2f35728fa6ef6929371ac"
-    //     })
-    //   })
-    //   setLike(likeIcon);
-    //   setCount(count - 1);
-    // }
+    if (like == likeIcon) {
+      await fetch(`http://localhost:5000/api/post/like/${post._id}`,{
+        method:'PUT',
+        headers:{
+          "Content-Type":"application/json",
+          token:accessToken
+        },
+        body:JSON.stringify({ 
+          user:id
+        })
+      })
+      setLike(LikedIcon);
+      setCount(count + 1);
+    } else {
+      await fetch(`http://localhost:5000/api/post/like/${post._id}`,{
+        method:'PUT',
+        headers:{
+          "Content-Type":"application/json",
+          token:accessToken
+        },
+        body:JSON.stringify({
+          user:id
+        })
+      })
+      setLike(likeIcon);
+      setCount(count - 1);
+    }
   };
   const addComments = () => {
-    const comment = {
+    const comment = { 
       id: "57349573",
       username: "shanid",
       title: `${commentWriting}`,
@@ -94,7 +100,7 @@ const ProfilePost = ({post}) => {
           </p>
           <img src={`${post.image}`} className="post-images" alt="" />
           <div style={{ display: "flex" }}>
-            <div style={{ display: "flex", marginLeft: "10px" }}>
+            <div style={{width:"300px", display: "flex", marginLeft: "10px" }}>
               <div
                 style={{
                   cursor: "pointer",
@@ -102,13 +108,15 @@ const ProfilePost = ({post}) => {
                   alignItems: "center",
                 }}
               >
-                {/* <img
+                {
+                  post.user !== id  && <img
                   src={`${like}`}
                   className="icon-post"
                   onClick={handleLike}
                   alt=""
-                /> */}
-                <p style={{ marginLeft: "6px" }}>{post.like.length} Likes</p>
+                />
+                }
+                <p style={{ marginLeft: "6px" }}>{count} Likes</p>
               </div>
               <div
                 style={{
@@ -132,7 +140,7 @@ const ProfilePost = ({post}) => {
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
-                marginLeft: 200,
+                marginLeft: 100,
               }}
             >
               <img src={`${shareIcon}`} style={{marginLeft:20,width:20}} alt="" />
@@ -143,7 +151,7 @@ const ProfilePost = ({post}) => {
             <div style={{ padding: "10px" }}>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <img src={`${profile}`} className="comment-post-img" alt="" />
-                {/* <p style={{marginLeft:"7px"}}>Shanid</p> */}
+                 {/* <p style={{marginLeft:"7px"}}>Shanid</p> */}
                 <input
                   className="comment"
                   placeholder="Write your thought"

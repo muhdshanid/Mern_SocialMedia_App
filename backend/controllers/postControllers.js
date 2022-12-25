@@ -20,7 +20,7 @@ export const createPost = async (req, res) => {
 export const getPost = async (req, res) => {
   try {
     const { id } = req.params;
-    const myPosts = await PostModel.find({ user: id });
+    const myPosts = await PostModel.find({ user: id }).sort({title:-1});
     if (!myPosts) {
       return res.status(200).json("You dont have any post");
     }

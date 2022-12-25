@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  allUsers,
   createUser,
   deleteUser,
   followUser,
@@ -35,5 +36,6 @@ userRouter.get("/posted-user/:id", getPostedUser);
 userRouter.get("/suggestion-user/:id", getSuggestionUsers);
 userRouter.get("/following/:id", getFollowingUsers);
 userRouter.get("/followers/:id", getFollowers); 
+userRouter.get("/all-users",verifyToken,allUsers)
 
 export default userRouter;

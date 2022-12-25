@@ -1,3 +1,8 @@
 .mainpost-container{
     flex: 3;
 }
+
+.loading{
+    margin-left: 270px;
+    margin-top: 200px;
+}

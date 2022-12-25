@@ -55,7 +55,7 @@ const ContentPost = () => {
           }
           if(progress !== 100){
             setLoading(true)
-            let roundedPercentage = Math.round(progress).toFixed(2)
+            let roundedPercentage = Math.round(progress).toFixed(0)
             setPercentage(roundedPercentage + "%")
           }
         },
@@ -109,7 +109,7 @@ const ContentPost = () => {
           }
           if(progress !== 100){
             setLoading(true)
-            let roundedPercentage = Math.round(progress).toFixed(2)
+            let roundedPercentage = Math.round(progress).toFixed(0)
             setPercentage(roundedPercentage + "%")
           }
         },
@@ -141,17 +141,19 @@ const ContentPost = () => {
         }
       );
     } else {
-      fetch(`http://localhost:5000/api/post/create-post`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          token: accessToken,
-        },
-        body: JSON.stringify({
-          title, 
-        }),
-      });
+      notifyError("Please image or video")
+      // fetch(`http://localhost:5000/api/post/create-post`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     token: accessToken,
+      //   },
+      //   body: JSON.stringify({
+      //     title, 
+      //   }),
+      // }); 
       setTitle("")
+      return
     }
   };
   return (
@@ -210,7 +212,7 @@ const ContentPost = () => {
         </div>
         <div style={{ marginTop: -43, display: "flex", justifyContent: "end" }}>
           <button onClick={handlePost} className="post-btn">
-            {loading ? `Posting ${percentage}` : "Post"}
+            {loading ? `Uploading... ${percentage}` : "Post"}
           </button>
         </div>
       </div>

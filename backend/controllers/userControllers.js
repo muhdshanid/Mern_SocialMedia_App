@@ -242,10 +242,10 @@ export const getPosts = async (req,res) => {
         const user = await UserModel.findById(id)
         const followersPost = await Promise.all(
             user.following.map(item => {
-                return PostModel.find({user:item})
+                return PostModel.find({user:item}).sort({title:-1})
             })
         )
-        const userPosts = await PostModel.find({user:user._id})
+        const userPosts = await PostModel.find({user:user._id}).sort({title:-1})
         return res.status(200).json(userPosts.concat(...followersPost))
     } catch (error) {
         console.log(error.message);
@@ -370,4 +370,15 @@ export const getFollowers = async (req,res) => {
         console.log(error.message);
         return res.status(500).json({message:"Internal server error"})
     }
+}
+
+export const allUsers = async(req,res) => {
+   try {
+    const allUsers = await UserModel.find({})
+    return res.status(200).json(allUsers)
+   } catch (error) {
+    console.log(error.message);
+        return res.status(500).json({message:"Internal server error"})
+   }
+
 }

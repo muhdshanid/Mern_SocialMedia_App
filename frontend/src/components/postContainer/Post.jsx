@@ -47,7 +47,7 @@ const Post = ({post}) => {
         })
       })
       setLike(LikedIcon);
-      setCount(count + 1);
+      setCount(count + 1); 
     } else {
       await fetch(`http://localhost:5000/api/post/like/${post._id}`,{
         method:'PUT',
@@ -105,7 +105,7 @@ const Post = ({post}) => {
               <img src={`${user.profile}`} className="post-img" alt="" />
             }
            
-            <p style={{ marginLeft: "5px" }}>{user.username}</p>
+            <p style={{ marginLeft: "5px" ,fontWeight:"bold"}}>{user.username}</p>
             <img src={`${moreOption}`} className="more-icon" alt="" />
           </div>
           <p

@@ -5,6 +5,10 @@
     margin-right: 0px;
 }
 
+.part{
+    color: rgb(167, 127, 127);
+}
+
 .profile-image{
     width: 30px;
     height: 30px;
@@ -16,8 +20,11 @@
     display: flex;
     align-items: center;
     margin-top: 9px;
+    margin-bottom: 9px;
     background-color: rgb(224, 228, 232);
     padding: 5px;
+    margin-left: 20px;
+    width: 500px;
     flex: 4;
     border-radius: 10px;
 }
@@ -52,9 +59,45 @@
 
 .search-input {
     outline: none;
-    width: 33pc;
+    width: 8pc;
     border: none;
     padding: 4px;
     border-radius: 10px;
     background-color: rgb(224, 228, 232);
+}
+
+.search-result{
+    width: 510px;
+    height: 200px;
+    margin-left: 20px;
+    margin-top: 45px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.search-container{
+    margin-left: 200px;
+}
+
+.search-image{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.user-container{
+    width: 470px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    margin-bottom: 2px;
+    display: flex;
+    margin-right: 5px;
+    margin-top: 2px;
+} 
+
+.users-container{
+    margin-left: -15px;
+    margin-top: 15px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
